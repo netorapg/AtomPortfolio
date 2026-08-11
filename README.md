@@ -1,43 +1,108 @@
-# Astro Starter Kit: Minimal
+# AtomPortfolio
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Portfólio pessoal, construído com [Astro](https://astro.build). Site estático, publicado no GitHub Pages via GitHub Actions.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+🔗 [netorapg.github.io/AtomPortfolio](https://netorapg.github.io/AtomPortfolio/)
 
-## 🚀 Project Structure
+## Stack
 
-Inside of your Astro project, you'll see the following folders and files:
+- **[Astro](https://astro.build)** (v7) — geração do site estático.
+- **Content Collections** (`astro:content`) — projetos, experiência profissional e publicações acadêmicas são arquivos Markdown validados por schema (Zod), não HTML hardcoded.
+- **`astro:assets`** — otimização automática de imagens (resize + WebP).
+- **[@fontsource](https://fontsource.org/)** — fontes (Inter e Fira Code) self-hosted, sem dependência do Google Fonts.
+- **[@astrojs/sitemap](https://docs.astro.build/en/guides/integrations-guide/sitemap/)** — geração automática de `sitemap-index.xml`.
+- **TypeScript** com `astro check` para validação de tipos e conteúdo.
+
+## Estrutura do projeto
 
 ```text
 /
-├── public/
+├── public/                  # Arquivos estáticos servidos como estão (favicon, etc.)
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── assets/               # Imagens processadas pelo astro:assets (ex: foto de perfil)
+│   ├── components/           # Uma seção da home = um componente (Hero, Experience, Stack...)
+│   ├── content/
+│   │   ├── experience/       # Um .md por vínculo profissional
+│   │   ├── projects/         # Um .md por projeto destacado
+│   │   └── publications/     # Um .md por artigo/publicação acadêmica
+│   ├── content.config.ts     # Schemas (Zod) das collections acima
+│   ├── layouts/
+│   │   └── Layout.astro      # <head> (SEO, meta tags), navbar, estilos globais
+│   ├── pages/
+│   │   └── index.astro       # Página única, monta os componentes de seção
+│   └── styles/
+│       └── home.css          # Estilos das seções
+└── astro.config.mjs
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+### Como adicionar conteúdo
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Nada disso exige mexer em `.astro`. Basta criar um novo arquivo Markdown na pasta certa — o campo `order` controla a posição de exibição (menor primeiro).
 
-Any static assets, like images, can be placed in the `public/` directory.
+**Novo projeto** — `src/content/projects/nome-do-projeto.md`:
 
-## 🧞 Commands
+```markdown
+---
+title: "Nome do Projeto"
+description: "Descrição curta do que o projeto faz."
+tags: ["Go", "Docker"]
+repoUrl: "https://github.com/netorapg/nome-do-projeto" # opcional
+---
+```
 
-All commands are run from the root of the project, from a terminal:
+**Nova experiência profissional** — `src/content/experience/empresa.md`:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+```markdown
+---
+role: "Cargo"
+company: "Descrição curta da empresa/produto"
+period: "Jan 2026 - Presente"
+order: 1
+highlights:
+  - "Texto do bullet. Pode conter <strong>HTML inline</strong>."
+---
+```
 
-## 👀 Want to learn more?
+**Nova publicação** — `src/content/publications/evento.md`:
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+```markdown
+---
+venue: "Nome do Evento/Anais"
+date: "Mês Ano"
+type: "Artigo Científico Publicado"
+paperTitle: "Título do artigo"
+authors: "Sobrenome, Nome; Sobrenome, Nome"
+abstract: "Resumo do artigo."
+doi: "10.5753/exemplo.2026.00000"
+order: 1
+---
+```
+
+Os schemas em `src/content.config.ts` validam esses campos — se algo obrigatório faltar ou tiver o tipo errado, o build falha (local e no CI) em vez de publicar algo quebrado.
+
+## Desenvolvimento local
+
+Requer Node.js ≥ 22.12.
+
+```sh
+npm install
+npm run dev       # inicia o servidor de dev em localhost:4321
+```
+
+| Comando           | Ação                                                    |
+| :----------------- | :------------------------------------------------------- |
+| `npm run dev`       | Servidor de desenvolvimento com hot reload                |
+| `npm run build`     | Build de produção em `./dist/`                            |
+| `npm run preview`   | Serve o build de produção localmente, antes do deploy     |
+| `npm run check`     | Valida tipos e conteúdo das collections (`astro check`)   |
+
+## Deploy
+
+Todo push em `master` dispara o workflow em [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml):
+
+1. Instala as dependências.
+2. Roda `npm run check` — se o conteúdo ou os tipos estiverem inválidos, o deploy é abortado aqui.
+3. Builda o site com a [action oficial do Astro](https://github.com/withastro/action).
+4. Publica o resultado no GitHub Pages.
+
+Não há passo manual: bastam commit e push.

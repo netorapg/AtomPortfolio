@@ -1,24 +1,54 @@
 ---
+import { getImage } from "astro:assets";
+import profilePhoto from "../assets/perfil.jpg";
+import "@fontsource/inter/300.css";
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/600.css";
+import "@fontsource/inter/700.css";
+import "@fontsource/fira-code/400.css";
+import "@fontsource/fira-code/600.css";
+
 interface Props {
     title: string;
+    description?: string;
 }
-const {title} = Astro.props;
+
+const {
+    title,
+    description = "Portfólio de Renato Augusto, engenheiro de software especializado em integração de sistemas, desenvolvimento mobile e backend.",
+} = Astro.props;
+
+const ogImage = await getImage({ src: profilePhoto, width: 1200 });
+const ogImageUrl = new URL(ogImage.src, Astro.site).toString();
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
 ---
 
 <!doctype html>
-<html lang="pt-BR"> 
+<html lang="pt-BR">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
         <title>{title}</title>
-    <!-- Importando Fontes: Inter (Textos) e Fira Code (Código) -->
-     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+        <meta name="description" content={description} />
+        <link rel="canonical" href={canonicalUrl} />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content={ogImageUrl} />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={ogImageUrl} />
     </head>
     <body>
+    <a href="#main" class="skip-link">Pular para o conteúdo</a>
     <!-- Header Flutuante / Glassmorphism -->
     <header class="navbar">
-        <nav>
+        <nav aria-label="Navegação principal">
             <a href="#hero">~/inicio</a>
             <a href="#experiencia">~/experiencia</a>
             <a href="#stack">~/stack</a>
@@ -27,6 +57,30 @@ const {title} = Astro.props;
     </header>
 
             <slot />
+
+    <script>
+        const navLinks = document.querySelectorAll<HTMLAnchorElement>(".navbar a");
+        const sections = Array.from(navLinks)
+            .map((link) => document.querySelector(link.getAttribute("href") ?? ""))
+            .filter((el): el is HTMLElement => el !== null);
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                for (const entry of entries) {
+                    if (!entry.isIntersecting) continue;
+                    navLinks.forEach((link) => {
+                        link.classList.toggle(
+                            "active",
+                            link.getAttribute("href") === `#${entry.target.id}`
+                        );
+                    });
+                }
+            },
+            { rootMargin: "-40% 0px -55% 0px" }
+        );
+
+        sections.forEach((section) => observer.observe(section));
+    </script>
     </body>
 </html>
 
@@ -44,7 +98,19 @@ const {title} = Astro.props;
             color: var(--text-color);
             scroll-behavior: smooth;
         }
-    
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
     body {
         margin: 0;
         padding: 0;
@@ -52,6 +118,30 @@ const {title} = Astro.props;
 
     h1, h2, h3 {
         font-family: 'Fira Code', monospace;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+        outline: 2px solid var(--accent-cyan);
+        outline-offset: 3px;
+    }
+
+    .skip-link {
+        position: absolute;
+        top: -100%;
+        left: 1rem;
+        background: var(--surface-color);
+        color: var(--text-color);
+        padding: 0.75rem 1.25rem;
+        border-radius: 4px;
+        border: 1px solid var(--accent-cyan);
+        z-index: 1000;
+        text-decoration: none;
+        transition: top 0.2s ease;
+    }
+
+    .skip-link:focus {
+        top: 1rem;
     }
 
     .navbar {
@@ -74,7 +164,8 @@ const {title} = Astro.props;
         transition: color 0.3s ease;
     }
 
-    .navbar a:hover {
+    .navbar a:hover,
+    .navbar a.active {
         color: var(--accent-cyan);
     }
 

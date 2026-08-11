@@ -11,6 +11,33 @@ const projectsCollection = defineCollection({
   }),
 });
 
+const experienceCollection = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/experience" }),
+  schema: z.object({
+    role: z.string(),
+    company: z.string(),
+    period: z.string(),
+    order: z.number(),
+    highlights: z.array(z.string()),
+  }),
+});
+
+const publicationsCollection = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/publications" }),
+  schema: z.object({
+    venue: z.string(),
+    date: z.string(),
+    type: z.string().default("Artigo Científico Publicado"),
+    paperTitle: z.string(),
+    authors: z.string(),
+    abstract: z.string(),
+    doi: z.string(),
+    order: z.number(),
+  }),
+});
+
 export const collections = {
   'projects': projectsCollection,
+  'experience': experienceCollection,
+  'publications': publicationsCollection,
 };

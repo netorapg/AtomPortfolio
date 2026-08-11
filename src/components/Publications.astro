@@ -1,0 +1,47 @@
+---
+import { getCollection } from "astro:content";
+
+const allPublications = (await getCollection("publications")).sort(
+	(a, b) => a.data.order - b.data.order
+);
+---
+
+<section id="formacao">
+	<h2><span class="cyan">#</span>Publicações</h2>
+
+	<div class="experience-grid">
+		{
+			allPublications.map((pub) => (
+				<div class="card">
+					<div class="card-header">
+						<h3>{pub.data.venue}</h3>
+						<span class="date">{pub.data.date}</span>
+					</div>
+					<h4 class="company">{pub.data.type}</h4>
+					<ul>
+						<li>
+							<strong>Título:</strong> <em>{pub.data.paperTitle}</em>
+						</li>
+						<li>
+							<strong>Autores:</strong> {pub.data.authors}
+						</li>
+						<li>
+							<strong>Resumo:</strong> {pub.data.abstract}
+						</li>
+						<li>
+							<strong>DOI:</strong>{" "}
+							<a
+								href={`https://doi.org/${pub.data.doi}`}
+								target="_blank"
+								rel="noopener noreferrer"
+								class="repo-link"
+							>
+								{pub.data.doi} ↗
+							</a>
+						</li>
+					</ul>
+				</div>
+			))
+		}
+	</div>
+</section>

@@ -1,0 +1,34 @@
+---
+import { getCollection } from "astro:content";
+
+const allProjects = await getCollection("projects");
+---
+
+<section id="projetos">
+	<h2><span class="cyan">#</span> Projetos Destacados</h2>
+	<div class="projects-grid">
+		{
+			allProjects.map((project) => (
+				<div class="project-card">
+					<h3>{project.data.title}</h3>
+					<p>{project.data.description}</p>
+					<div class="tags">
+						{project.data.tags.map((tag) => (
+							<span>{tag}</span>
+						))}
+					</div>
+					{project.data.repoUrl && (
+						<a
+							href={project.data.repoUrl}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="repo-link"
+						>
+							Ver Repositório ↗
+						</a>
+					)}
+				</div>
+			))
+		}
+	</div>
+</section>

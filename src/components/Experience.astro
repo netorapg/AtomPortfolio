@@ -1,0 +1,27 @@
+---
+import { getCollection } from "astro:content";
+
+const allExperience = (await getCollection("experience")).sort(
+	(a, b) => a.data.order - b.data.order
+);
+---
+
+<section id="experiencia">
+	<h2><span class="cyan">#</span> Experiência Profissional</h2>
+	{
+		allExperience.map((exp) => (
+			<div class="card">
+				<div class="card-header">
+					<h3>{exp.data.role}</h3>
+					<span class="date">{exp.data.period}</span>
+				</div>
+				<h4 class="company">{exp.data.company}</h4>
+				<ul>
+					{exp.data.highlights.map((highlight) => (
+						<li set:html={highlight} />
+					))}
+				</ul>
+			</div>
+		))
+	}
+</section>

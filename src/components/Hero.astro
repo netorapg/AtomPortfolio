@@ -1,0 +1,30 @@
+---
+import { Image } from "astro:assets";
+import profilePhoto from "../assets/perfil.jpg";
+---
+
+<section id="hero">
+	<div class="card hero-card">
+		<div class="hero-content">
+			<div class="hero-text">
+				<h1><span class="cyan">❯</span> Renato Augusto</h1>
+				<h2>Engenheiro de Software</h2>
+				<p>
+					Desenvolvedor de software com experiência em integração
+					de sistemas, desenvolvimento mobile e backend.
+					Apaixonado por criar soluções escaláveis e eficientes,
+					sempre buscando aprender novas tecnologias e aprimorar
+					minhas habilidades.
+				</p>
+			</div>
+
+			<div class="hero-image-wrapper">
+				<Image
+					src={profilePhoto}
+					alt="Foto de Renato Augusto"
+					width={440}
+				/>
+			</div>
+		</div>
+	</div>
+</section>
