@@ -1,17 +1,284 @@
 ---
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import "../styles/home.css";
 
+// Busca todos os projetos da pasta content/projects
+const allProjects = await getCollection("projects");
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Renato Augusto | Software Engineer">
+	<main>
+		<!-- SEÇÃO HERO (Estilo ID Card) -->
+		<section id="hero">
+            <div class="card hero-card">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1><span class="cyan">❯</span> Renato Augusto</h1>
+                        <h2>Engenheiro de Software</h2>
+                        <p>
+                            Desenvolvedor de software com experiência em integração de sistemas, desenvolvimento mobile e backend. Apaixonado por criar soluções escaláveis e eficientes, sempre buscando aprender novas tecnologias e aprimorar minhas habilidades.
+                        </p>
+                    </div>
+                    
+                    <div class="hero-image-wrapper">
+                        <img src="/perfil.jpg" alt="Foto de Renato Augusto" />
+                    </div>
+                </div>
+            </div>
+		</section>
+
+		<!-- SEÇÃO EXPERIÊNCIA -->
+		<section id="experiencia">
+			<h2><span class="cyan">#</span> Experiência Profissional</h2>
+			<div class="card">
+				<div class="card-header">
+					<h3>Integração de Sistemas e Desenvolvimento Freelance</h3>
+					<span class="date">Jan 2026 - Presente</span>
+				</div>
+				<h4 class="company">
+					Desenvolvimento de Soluções ERP, Integrações com E-commerce
+					e desenvolvimento mobile.
+				</h4>
+				<ul>
+					<li>
+						Manutenção e evolução de ecossistemas comerciais,
+						atuando diretamente em módulos ERP e servidores.
+					</li>
+					<li>
+						Desenvolvimento de rotinas de automação, scripts para
+						manipulação de dados e regras de negócio complexas.
+					</li>
+					<li>
+						Responsável pela integração segura de dados entre
+						sistemas internos e plataformas externas via APIs,
+						garantindo a integridade e sincronização do fluxo.
+					</li>
+					<li>
+						<strong
+							>Modernização da infraestrutura de código:</strong
+						> Implementação do versionamento utilizando Git e GitHub,
+						estabelecendo um fluxo de trabalho que anteriormente não existia
+						no ERP, garantindo rastreabilidade e segurança para o desenvolvimento.
+					</li>
+					<li>
+						<strong>Mentoria e Liderança Técnica:</strong> Orientação
+						e capacitação técnica de estagiários, auxiliando na adoção
+						de boas práticas de código, fluxos de versionamento e arquitetura
+						de software, acelerando a curva de aprendizado da equipe.
+					</li>
+					<li>
+						<strong>Desenvolvimento de ponta a ponta</strong> do aplicativo
+						ProComanda para bares e restaurantes. Construído com .NET
+						MAUI e estruturado em arquitetura de camadas, com o desenvolvimento
+						guiado por testes (TDD) para garantir alta estabilidade e
+						confiabilidade na integração em tempo real com o ERP principal.
+					</li>
+					<li>
+						<strong>Refatoração profunda e evolução</strong> do aplicativo
+						mobile ProCollector (Flutter). A transição para uma Clean
+						Architecture dividida por features e o uso do padrão BLoC
+						para gerenciamento de estado permitiram a criação de um código
+						altamente escalável e modular. Além da melhoria na UX, a reestruturação
+						incluiu a adoção de injeção de dependências (<code
+							>get_it</code
+						>) e uma integração sólida com APIs em ASP.NET Core 8.
+					</li>
+				</ul>
+			</div>
+			<div class="card">
+				<div class="card-header">
+					<h3>Estagiário em Desenvolvimento de Software</h3>
+					<span class="date">Mar 2025 - Dez 2025</span>
+				</div>
+				<h4 class="company">
+					Desenvolvimento do App ProCollector e manutenção e evolução
+					do ERP ProComércio
+				</h4>
+				<ul>
+					<li>
+						<strong>Desenvolvimento Mobile:</strong> Criação e evolução
+						do aplicativo mobile ProCollector, focado em resolver gargalos
+						de coleta e gestão de estoque de lojas.
+					</li>
+					<li>
+						<strong>Integração de Sistemas:</strong> Implementação de
+						integrações seguras entre plataformas utilizando APIs, garantindo
+						a sincronização e comunicação fluida entre o app e o backend.
+					</li>
+					<li>
+						<strong>Evolução de Backend em C#:</strong> Responsável pela
+						manutenção do código-fonte e pelo desenvolvimento de novas
+						rotinas de negócio e automações utilizando a linguagem C#.
+					</li>
+				</ul>
+			</div>
+		</section>
+
+		<!-- PUBLICAÇÕES -->
+        <section id="formacao">
+            <h2><span class="cyan">#</span>Publicações</h2>
+            
+            <div class="experience-grid">
+                <!-- Card de Publicação Acadêmica -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Latin.Science 2025</h3>
+                        <span class="date">Outubro 2025</span>
+                    </div>
+                    <h4 class="company">Artigo Científico Publicado</h4>
+                    <ul>
+                        <li>
+                            <strong>Título:</strong> <em>Desenvolvimento de um Jogo Metroidvania em C++ com SDL: Uma Abordagem sem o uso de third-party engines.</em>
+                        </li>
+                        <li>
+                            <strong>Autores:</strong> GUIMARÃES NETO, Renato Augusto Platz; CRUZ, Eduardo Henrique Molina da.
+                        </li>
+                        <li>
+                            <strong>Resumo:</strong> Este artigo investiga os desafios e as boas práticas no desenvolvimento de jogos digitais sem o uso de third-party engines (TPEs), utilizando a linguagem C++ e a biblioteca SDL. Através de um estudo de caso focado na criação de um jogo do gênero Metroidvania, o trabalho detalha a implementação manual de sistemas fundamentais, como motor de física e animação. Os resultados, validados por testes com usuários, confirmam a viabilidade técnica da abordagem e destacam o balanço entre a flexibilidade para criar mecânicasúnicas e a complexidade de se refinar interações como o combate. O estudo evidencia o potencial formativo e técnico do desenvolvimento em baixo nível, posicionando-o como uma alternativa valiosa para o aprofundamento dos fundamentos da programação de jogos.
+                        </li>
+                        <li>
+                            <strong>DOI:</strong> <a href="https://doi.org/10.5753/latinoware.2025.16491" target="_blank" class="repo-link">10.5753/latinoware.2025.16491 ↗</a>
+                        </li>
+                    </ul>
+                </div>
+
+				<div class="card">
+                    <div class="card-header">
+                        <h3>Anais do Workshop sobre Educação em Computação (WEI) 2023</h3>
+                        <span class="date">Agosto 2023</span>
+                    </div>
+                    <h4 class="company">Artigo Científico Publicado</h4>
+                    <ul>
+                        <li>
+                            <strong>Título:</strong> <em>Aplicação de atividades lúdicas no ensino de tecnologia para alunos do ensino fundamental - um relato de experiência em Paranavaí, Paraná, Brasil.</em>
+                        </li>
+                        <li>
+                            <strong>Autores:</strong> MIZUTANI, Angélica Sayuri; GUIMARÃES NETO, Renato Augusto Platz; OLIVEIRA, Carla Santos de; OLIVEIRA, Vitor Tavares de; CONTRERA, Heloísa da Silva; FLÔR, Daniela Eloise; AYLON, Linnyer Beatrys Ruiz.
+                        </li>
+                        <li>
+                            <strong>Resumo:</strong> O acesso precoce à tecnologia atualmente exige orientação adequada quanto ao seu uso, não apenas para entretenimento, mas também como recurso para auxiliar nos estudos e carreira. Nesse contexto, o projeto Manna Academy objetivou capacitar crianças do ensino fundamental de uma escola pública em tecnologia da informação. Foram empregadas atividades lúdicas para tornar o aprendizado mais prazeroso e divertido, abordando temas como Estímulo à Ciência, Internacionalização, Hardware, Software, Pensamento Computacional, Algoritmos e Robótica. Podemos concluir que o uso de atividades lúdicas e a gamificação no ensino de tecnologia foi eficiente na promoção do interesse e motivação dos estudantes.
+                        </li>
+                        <li>
+                            <strong>DOI:</strong> <a href="https://doi.org/10.5753/wei.2023.230000" target="_blank" class="repo-link">10.5753/wei.2023.230000 ↗</a>
+                        </li>
+                    </ul>
+                </div>
+
+				<div class="card">
+                    <div class="card-header">
+                        <h3>Anais do Seminário Integrado de Software e Hardware (SEMISH) 2025</h3>
+                        <span class="date">Julho 2025</span>
+                    </div>
+                    <h4 class="company">Artigo Científico Publicado</h4>
+                    <ul>
+                        <li>
+                            <strong>Título:</strong> <em>Janela Periódica Inclusiva: Uma Abordagem Baseada no Desenho Universal para Aprendizagem.</em>
+                        </li>
+                        <li>
+                            <strong>Autores:</strong> OLIVEIRA, Vitor Tavares de; OLIVEIRA, Carla Santos de; GUIMARÃES NETO, Renato Augusto Platz; FLÔR, Daniela Eloise; CRUZ, Elizete Pinto; SANTOS, Michele Barboza dos.
+                        </li>
+                        <li>
+                            <strong>Resumo:</strong> Inclusão escolar é a base para uma sociedade mais justa e igualitária. A “Janela Periódica Inclusiva” propõe uma experiência educacional acessível e interativa, integrando tecnologias adaptativas à Tabela Periódica, fundamentada no Desenho Universal para Aprendizagem. A proposta atendeu estudantes com deficiência auditiva, visual, autismo, Transtorno do Déficit de Atenção e Hiperatividade e dificuldades educacionais diversas. Seu protótipo incorpora Libras, Braille, narração em áudio, legendas e elementos visuais dinâmicos, garantindo uma experiência imersiva e personalizada. Com um sistema de hardware e software integrados, a iniciativa pluraliza a compreensão de um conceito fundamental na área de química, tornando-o acessível para vários estudantes.
+                        </li>
+                        <li>
+                            <strong>DOI:</strong> <a href="https://doi.org/10.5753/semish.2025.8699" target="_blank" class="repo-link">10.5753/semish.2025.8699 ↗</a>
+                        </li>
+                    </ul>
+                </div>
+
+
+            </div>
+        </section>
+
+		<!-- SEÇÃO STACK -->
+		<section id="stack">
+            <h2><span class="cyan">#</span> Stack & Infraestrutura</h2>
+            <div class="stack-grid">
+                
+                <!-- Categoria 1: DevOps & Infra -->
+                <div class="stack-category">
+                    <h3>DevOps & Infraestrutura</h3>
+                    <div class="tags">
+                        <span>Docker</span>
+                        <span>Podman</span>
+                        <span>Kubernetes</span>
+                        <span>Portainer</span>
+                        <span>Linux (Arch, RHEL, Debian)</span>
+                        <span>GitHub Actions (CI/CD)</span>
+                        <span>Bash Scripting</span>
+                    </div>
+                </div>
+
+                <!-- Categoria 2: Backend & Dados -->
+                <div class="stack-category">
+                    <h3>Back-end & Banco de Dados</h3>
+                    <div class="tags">
+                        <span>C# (.NET 8)</span>
+                        <span>Go</span>
+                        <span>SQL Server</span>
+                        <span>SQLite</span>
+						<span>PostgreSQL</span>
+                        <span>TDD</span>
+                    </div>
+                </div>
+
+                <!-- Categoria 3: Mobile & Front-end -->
+                <div class="stack-category">
+                    <h3>Mobile & Arquitetura</h3>
+                    <div class="tags">
+                        <span>Flutter</span>
+                        <span>Dart</span>
+                        <span>.NET MAUI</span>
+                        <span>BLoC</span>
+                        <span>Clean Architecture</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+		<!-- SEÇÃO PROJETOS (Gerado dinamicamente pelos Markdowns) -->
+        <section id="projetos">
+            <h2><span class="cyan">#</span> Projetos Destacados</h2>
+            <div class="projects-grid">
+                {allProjects.map((project) => (
+                    <div class="project-card">
+                        <h3>{project.data.title}</h3>
+                        <p>{project.data.description}</p>
+                        <div class="tags">
+                            {project.data.tags.map((tag) => (
+                                <span>{tag}</span>
+                            ))}
+                        </div>
+                        {project.data.repoUrl && (
+                            <a href={project.data.repoUrl} target="_blank" class="repo-link">Ver Repositório ↗</a>
+                        )}
+                    </div>
+                ))}
+            </div>
+        </section>
+
+		<!-- SEÇÃO CONTATO -->
+        <section id="contato">
+            <h2><span class="cyan">#</span> Vamos Conversar?</h2>
+            <p>Atualmente estou focado em projetos freelancer e desenvolvimento de soluções escaláveis. Se você tem um desafio técnico, uma integração complexa ou apenas quer trocar uma ideia sobre código, minha caixa de entrada está sempre aberta.</p>
+            
+            <div class="contact-links">
+                <a href="mailto:renatoplatz11@gmail.com" target="_blank" class="btn">
+                    <span class="cyan">❯</span> E-mail
+                </a>
+                <a href="https://wa.me/5544997446666" target="_blank" class="btn">
+                    <span class="cyan">❯</span> WhatsApp
+                </a>
+                <a href="https://github.com/netorapg" target="_blank" class="btn">
+                    <span class="cyan">❯</span> GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/renatoaugustoplatzgneto/" target="_blank" class="btn">
+                    <span class="cyan">❯</span> LinkedIn
+                </a>
+            </div>
+        </section>
+	</main>
+</Layout>
