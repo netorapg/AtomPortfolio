@@ -14,6 +14,10 @@
     transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
+section > .card:last-child {
+    margin-bottom: 0;
+}
+
 .project-card:hover {
     transform: translateY(-5px);
     border-color: var(--accent-cyan);
@@ -24,8 +28,8 @@
    ========================================= */
 .hero-card {
     position: relative;
-    padding: 3rem 2.5rem 2.5rem 2.5rem;
-    margin-top: 2rem;
+    padding: 2.5rem;
+    margin-top: 3rem;
 }
 
 
@@ -35,7 +39,6 @@
     align-items: center; /* Alinha os dois verticalmente no centro */
     justify-content: space-between;
     gap: 3rem; /* Espaço entre o texto e a foto */
-    margin-top: 1rem;
 }
 
 .hero-text {
@@ -203,37 +206,58 @@
     margin-bottom: 0;
 }
 
-.stack-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
+/* Stack embutida no card do hero */
+.hero-stack {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.stack-category {
-    background: var(--surface-color);
-    padding: 1.5rem;
-    border-radius: 8px;
-    border: 1px solid rgba(255,255,255,0.05);
-}
-
-.stack-category h3 {
-    margin-top: 0;
-    margin-bottom: 1.2rem;
+.hero-stack-title {
+    margin: 0 0 1.25rem 0;
     font-size: 1.1rem;
     color: var(--text-color);
 }
 
-.stack-category .tags span {
+.hero-stack-row {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 1rem;
+    align-items: baseline;
+    padding: 0.75rem 0;
+}
+
+.hero-stack-row + .hero-stack-row {
+    border-top: 1px dashed rgba(255, 255, 255, 0.06);
+}
+
+.hero-stack-label {
+    font-family: "Fira Code", monospace;
+    font-size: 0.85rem;
+    color: #9ca3af;
+}
+
+.hero-stack .tags {
+    margin: 0;
+}
+
+.hero-stack .tags span {
     background: rgba(0, 240, 255, 0.05);
     border: 1px solid rgba(0, 240, 255, 0.2);
     cursor: default;
     transition: all 0.2s ease;
 }
 
-.stack-category .tags span:hover {
+.hero-stack .tags span:hover {
     background: rgba(0, 240, 255, 0.15);
     transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .hero-stack-row {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
 }
 
 #contato {

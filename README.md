@@ -20,7 +20,7 @@ Portfólio pessoal, construído com [Astro](https://astro.build). Site estático
 ├── public/                  # Arquivos estáticos servidos como estão (favicon, etc.)
 ├── src/
 │   ├── assets/               # Imagens processadas pelo astro:assets (ex: foto de perfil)
-│   ├── components/           # Uma seção da home = um componente (Hero, Experience, Stack...)
+│   ├── components/           # Uma seção da home = um componente (Hero, Experience, Projects...)
 │   ├── content/
 │   │   ├── experience/       # Um .md por vínculo profissional
 │   │   ├── projects/         # Um .md por projeto destacado

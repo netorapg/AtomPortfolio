@@ -52,7 +52,6 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
     <header class="navbar">
         <nav aria-label="Navegação principal">
             <a href="#hero">~/inicio</a>
-            <a href="#stack">~/stack</a>
             <a href="#experiencia">~/experiencia</a>
             <a href="#publicacoes">~/publicacoes</a>
             <a href="#projetos">~/projetos</a>
@@ -186,10 +185,14 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
     }
 
     section {
-        padding: 3rem 2rem;
+        padding: 2rem;
         /* compensa a navbar fixa ao navegar por âncoras */
-        scroll-margin-top: 3.5rem;
+        scroll-margin-top: 4.5rem;
         max-width: 1000px;
         margin: 0 auto;
+    }
+
+    section > h2 {
+        margin-top: 0;
     }
 </style>

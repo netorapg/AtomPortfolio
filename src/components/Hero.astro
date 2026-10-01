@@ -1,6 +1,11 @@
 ---
 import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
 import profilePhoto from "../assets/perfil.jpg";
+
+const allStack = (await getCollection("stack")).sort(
+	(a, b) => a.data.order - b.data.order
+);
 ---
 
 <section id="hero">
@@ -27,6 +32,22 @@ import profilePhoto from "../assets/perfil.jpg";
 					fetchpriority="high"
 				/>
 			</div>
+		</div>
+
+		<div class="hero-stack" id="stack">
+			<h3 class="hero-stack-title"><span class="cyan">#</span> Stack & Infraestrutura</h3>
+			{
+				allStack.map((group) => (
+					<div class="hero-stack-row">
+						<span class="hero-stack-label">{group.data.category}</span>
+						<div class="tags">
+							{group.data.items.map((item) => (
+								<span>{item}</span>
+							))}
+						</div>
+					</div>
+				))
+			}
 		</div>
 	</div>
 </section>
