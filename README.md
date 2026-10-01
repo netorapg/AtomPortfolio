@@ -7,7 +7,7 @@ Portfólio pessoal, construído com [Astro](https://astro.build). Site estático
 ## Stack
 
 - **[Astro](https://astro.build)** (v7) — geração do site estático.
-- **Content Collections** (`astro:content`) — projetos, experiência profissional e publicações acadêmicas são arquivos Markdown validados por schema (Zod), não HTML hardcoded.
+- **Content Collections** (`astro:content`) — projetos, experiência profissional, publicações acadêmicas e stack são arquivos Markdown validados por schema (Zod), não HTML hardcoded.
 - **`astro:assets`** — otimização automática de imagens (resize + WebP).
 - **[@fontsource](https://fontsource.org/)** — fontes (Inter e Fira Code) self-hosted, sem dependência do Google Fonts.
 - **[@astrojs/sitemap](https://docs.astro.build/en/guides/integrations-guide/sitemap/)** — geração automática de `sitemap-index.xml`.
@@ -24,7 +24,8 @@ Portfólio pessoal, construído com [Astro](https://astro.build). Site estático
 │   ├── content/
 │   │   ├── experience/       # Um .md por vínculo profissional
 │   │   ├── projects/         # Um .md por projeto destacado
-│   │   └── publications/     # Um .md por artigo/publicação acadêmica
+│   │   ├── publications/     # Um .md por artigo/publicação acadêmica
+│   │   └── stack/            # Um .md por categoria de tecnologias
 │   ├── content.config.ts     # Schemas (Zod) das collections acima
 │   ├── layouts/
 │   │   └── Layout.astro      # <head> (SEO, meta tags), navbar, estilos globais
@@ -47,6 +48,7 @@ title: "Nome do Projeto"
 description: "Descrição curta do que o projeto faz."
 tags: ["Go", "Docker"]
 repoUrl: "https://github.com/netorapg/nome-do-projeto" # opcional
+order: 1
 ---
 ```
 
@@ -78,6 +80,18 @@ order: 1
 ---
 ```
 
+**Nova categoria de stack** — `src/content/stack/categoria.md`:
+
+```markdown
+---
+category: "Nome da Categoria"
+order: 1
+items:
+  - "Tecnologia A"
+  - "Tecnologia B"
+---
+```
+
 Os schemas em `src/content.config.ts` validam esses campos — se algo obrigatório faltar ou tiver o tipo errado, o build falha (local e no CI) em vez de publicar algo quebrado.
 
 ## Desenvolvimento local
@@ -102,7 +116,7 @@ Todo push em `master` dispara o workflow em [`.github/workflows/deploy.yml`](.gi
 
 1. Instala as dependências.
 2. Roda `npm run check` — se o conteúdo ou os tipos estiverem inválidos, o deploy é abortado aqui.
-3. Builda o site com a [action oficial do Astro](https://github.com/withastro/action).
+3. Builda o site (`npm run build`) e faz upload do `dist/` como artefato do Pages.
 4. Publica o resultado no GitHub Pages.
 
 Não há passo manual: bastam commit e push.

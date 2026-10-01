@@ -1,6 +1,6 @@
 ---
 import { getImage } from "astro:assets";
-import profilePhoto from "../assets/perfil.jpg";
+import ogPhoto from "../assets/og.jpg";
 import "@fontsource/inter/300.css";
 import "@fontsource/inter/400.css";
 import "@fontsource/inter/600.css";
@@ -18,7 +18,7 @@ const {
     description = "Portfólio de Renato Augusto, engenheiro de software especializado em integração de sistemas, desenvolvimento mobile e backend.",
 } = Astro.props;
 
-const ogImage = await getImage({ src: profilePhoto, width: 1200 });
+const ogImage = await getImage({ src: ogPhoto, format: "jpg" });
 const ogImageUrl = new URL(ogImage.src, Astro.site).toString();
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
 ---
@@ -27,7 +27,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
 <html lang="pt-BR">
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
         <title>{title}</title>
         <meta name="description" content={description} />
@@ -38,6 +38,8 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
         <meta property="og:description" content={description} />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:image" content={ogImageUrl} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
@@ -50,9 +52,11 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
     <header class="navbar">
         <nav aria-label="Navegação principal">
             <a href="#hero">~/inicio</a>
-            <a href="#experiencia">~/experiencia</a>
             <a href="#stack">~/stack</a>
+            <a href="#experiencia">~/experiencia</a>
+            <a href="#publicacoes">~/publicacoes</a>
             <a href="#projetos">~/projetos</a>
+            <a href="#contato">~/contato</a>
         </nav>
     </header>
 
@@ -64,19 +68,31 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
             .map((link) => document.querySelector(link.getAttribute("href") ?? ""))
             .filter((el): el is HTMLElement => el !== null);
 
+        const setActive = (id: string) => {
+            navLinks.forEach((link) => {
+                link.classList.toggle("active", link.getAttribute("href") === `#${id}`);
+            });
+        };
+
         const observer = new IntersectionObserver(
             (entries) => {
                 for (const entry of entries) {
-                    if (!entry.isIntersecting) continue;
-                    navLinks.forEach((link) => {
-                        link.classList.toggle(
-                            "active",
-                            link.getAttribute("href") === `#${entry.target.id}`
-                        );
-                    });
+                    if (entry.isIntersecting) setActive(entry.target.id);
                 }
             },
             { rootMargin: "-40% 0px -55% 0px" }
+        );
+
+        // Seções curtas no fim da página nunca chegam à faixa do observer.
+        window.addEventListener(
+            "scroll",
+            () => {
+                const atBottom =
+                    window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+                const last = sections.at(-1);
+                if (atBottom && last) setActive(last.id);
+            },
+            { passive: true }
         );
 
         sections.forEach((section) => observer.observe(section));
@@ -170,8 +186,9 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
     }
 
     section {
-        min-height: 100vh;
-        padding: 6rem 2rem 2rem 2rem;
+        padding: 3rem 2rem;
+        /* compensa a navbar fixa ao navegar por âncoras */
+        scroll-margin-top: 3.5rem;
         max-width: 1000px;
         margin: 0 auto;
     }

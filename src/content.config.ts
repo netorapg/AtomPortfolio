@@ -1,4 +1,5 @@
-import { z, defineCollection } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { z } from 'astro/zod';
 import { glob } from 'astro/loaders';
 
 const projectsCollection = defineCollection({
@@ -7,7 +8,8 @@ const projectsCollection = defineCollection({
     title: z.string(),
     description: z.string(),
     tags: z.array(z.string()),
-    repoUrl: z.string().url().optional(),
+    repoUrl: z.url().optional(),
+    order: z.number(),
   }),
 });
 
@@ -36,8 +38,18 @@ const publicationsCollection = defineCollection({
   }),
 });
 
+const stackCollection = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/stack" }),
+  schema: z.object({
+    category: z.string(),
+    order: z.number(),
+    items: z.array(z.string()),
+  }),
+});
+
 export const collections = {
   'projects': projectsCollection,
   'experience': experienceCollection,
   'publications': publicationsCollection,
+  'stack': stackCollection,
 };

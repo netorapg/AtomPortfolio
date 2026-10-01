@@ -1,7 +1,9 @@
 ---
 import { getCollection } from "astro:content";
 
-const allProjects = await getCollection("projects");
+const allProjects = (await getCollection("projects")).sort(
+	(a, b) => a.data.order - b.data.order
+);
 ---
 
 <section id="projetos">

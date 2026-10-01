@@ -6,10 +6,10 @@ const allPublications = (await getCollection("publications")).sort(
 );
 ---
 
-<section id="formacao">
-	<h2><span class="cyan">#</span>Publicações</h2>
+<section id="publicacoes">
+	<h2><span class="cyan">#</span> Publicações</h2>
 
-	<div class="experience-grid">
+	<div class="publications-grid">
 		{
 			allPublications.map((pub) => (
 				<div class="card">

@@ -21,6 +21,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
 
       - name: Instalar dependências
         run: npm ci
@@ -28,10 +29,13 @@ jobs:
       - name: Verificar tipos e conteúdo (astro check)
         run: npm run check
 
-      - name: Instalar, construir e fazer upload do site
-        uses: withastro/action@v3
+      - name: Construir o site
+        run: npm run build
+
+      - name: Fazer upload do build
+        uses: actions/upload-pages-artifact@v3
         with:
-          node-version: 22
+          path: ./dist
 
   deploy:
     needs: build
