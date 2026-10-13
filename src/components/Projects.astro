@@ -7,13 +7,18 @@ const allProjects = (await getCollection("projects")).sort(
 ---
 
 <section id="projetos">
-	<h2><span class="cyan">#</span> Projetos Destacados</h2>
+	<h2>
+		<span class="cyan">#</span>
+		<span class="lang-pt">Projetos Destacados</span>
+		<span class="lang-en">Featured Projects</span>
+	</h2>
 	<div class="projects-grid">
 		{
 			allProjects.map((project) => (
 				<div class="project-card">
 					<h3>{project.data.title}</h3>
-					<p>{project.data.description}</p>
+					<p class="lang-pt">{project.data.description}</p>
+					<p class="lang-en">{project.data.en?.description ?? project.data.description}</p>
 					<div class="tags">
 						{project.data.tags.map((tag) => (
 							<span>{tag}</span>
@@ -26,7 +31,8 @@ const allProjects = (await getCollection("projects")).sort(
 							rel="noopener noreferrer"
 							class="repo-link"
 						>
-							Ver Repositório ↗
+							<span class="lang-pt">Ver Repositório ↗</span>
+							<span class="lang-en">View Repository ↗</span>
 						</a>
 					)}
 				</div>

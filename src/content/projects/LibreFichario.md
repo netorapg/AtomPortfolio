@@ -4,4 +4,6 @@ description: "Leitor de PDF mobile para estudos e anotações, desenvolvido em F
 tags: ["Flutter", "BLoC", "Mobile"]
 repoUrl: "https://github.com/netorapg/LibreFichario"
 order: 2
+en:
+  description: "A mobile PDF reader for studying and note-taking, built in Flutter with BLoC. Its standout feature is the floating notes system: the user creates notes and positions them freely over the document, each one linked to its page."
 ---

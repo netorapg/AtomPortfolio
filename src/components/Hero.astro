@@ -13,13 +13,23 @@ const allStack = (await getCollection("stack")).sort(
 		<div class="hero-content">
 			<div class="hero-text">
 				<h1><span class="cyan">❯</span> Renato Augusto</h1>
-				<h2>Engenheiro de Software</h2>
-				<p>
+				<h2>
+					<span class="lang-pt">Engenheiro de Software</span>
+					<span class="lang-en">Software Engineer</span>
+				</h2>
+				<p class="lang-pt">
 					Desenvolvedor de software com experiência em integração
 					de sistemas, desenvolvimento mobile e backend.
 					Apaixonado por criar soluções escaláveis e eficientes,
 					sempre buscando aprender novas tecnologias e aprimorar
 					minhas habilidades.
+				</p>
+				<p class="lang-en">
+					Software developer with experience in systems
+					integration, mobile development, and backend.
+					Passionate about building scalable, efficient
+					solutions, always looking to learn new technologies
+					and sharpen my skills.
 				</p>
 			</div>
 
@@ -27,6 +37,8 @@ const allStack = (await getCollection("stack")).sort(
 				<Image
 					src={profilePhoto}
 					alt="Foto de Renato Augusto"
+					data-alt-pt="Foto de Renato Augusto"
+					data-alt-en="Photo of Renato Augusto"
 					width={440}
 					loading="eager"
 					fetchpriority="high"
@@ -35,11 +47,18 @@ const allStack = (await getCollection("stack")).sort(
 		</div>
 
 		<div class="hero-stack" id="stack">
-			<h3 class="hero-stack-title"><span class="cyan">#</span> Stack & Infraestrutura</h3>
+			<h3 class="hero-stack-title">
+				<span class="cyan">#</span>
+				<span class="lang-pt">Stack & Infraestrutura</span>
+				<span class="lang-en">Stack & Infrastructure</span>
+			</h3>
 			{
 				allStack.map((group) => (
 					<div class="hero-stack-row">
-						<span class="hero-stack-label">{group.data.category}</span>
+						<span class="hero-stack-label">
+							<span class="lang-pt">{group.data.category}</span>
+							<span class="lang-en">{group.data.en?.category ?? group.data.category}</span>
+						</span>
 						<div class="tags">
 							{group.data.items.map((item) => (
 								<span>{item}</span>

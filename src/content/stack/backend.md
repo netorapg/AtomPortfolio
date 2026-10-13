@@ -8,4 +8,6 @@ items:
   - "SQLite"
   - "PostgreSQL"
   - "TDD"
+en:
+  category: "Back-end & Databases"
 ---

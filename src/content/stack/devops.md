@@ -9,4 +9,6 @@ items:
   - "Linux (Arch, RHEL, Debian)"
   - "GitHub Actions (CI/CD)"
   - "Bash Scripting"
+en:
+  category: "DevOps & Infrastructure"
 ---

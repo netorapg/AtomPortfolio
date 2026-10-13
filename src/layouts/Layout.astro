@@ -47,21 +47,61 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
         <meta name="twitter:image" content={ogImageUrl} />
     </head>
     <body>
-    <a href="#main" class="skip-link">Pular para o conteúdo</a>
+    <script is:inline>
+        (function () {
+            var stored = localStorage.getItem("lang");
+            var lang = stored === "en" ? "en" : "pt";
+            document.documentElement.dataset.lang = lang;
+            document.documentElement.lang = lang === "en" ? "en" : "pt-BR";
+        })();
+    </script>
+    <a href="#main" class="skip-link">
+        <span class="lang-pt">Pular para o conteúdo</span>
+        <span class="lang-en">Skip to content</span>
+    </a>
     <!-- Header Flutuante / Glassmorphism -->
     <header class="navbar">
         <nav aria-label="Navegação principal">
-            <a href="#hero">~/inicio</a>
-            <a href="#experiencia">~/experiencia</a>
-            <a href="#publicacoes">~/publicacoes</a>
-            <a href="#projetos">~/projetos</a>
-            <a href="#contato">~/contato</a>
+            <a href="#hero"><span class="lang-pt">~/inicio</span><span class="lang-en">~/home</span></a>
+            <a href="#experiencia"><span class="lang-pt">~/experiencia</span><span class="lang-en">~/experience</span></a>
+            <a href="#publicacoes"><span class="lang-pt">~/publicacoes</span><span class="lang-en">~/publications</span></a>
+            <a href="#projetos"><span class="lang-pt">~/projetos</span><span class="lang-en">~/projects</span></a>
+            <a href="#contato"><span class="lang-pt">~/contato</span><span class="lang-en">~/contact</span></a>
+            <button id="lang-toggle" type="button" class="lang-toggle" aria-label="Switch to English">EN</button>
         </nav>
     </header>
 
             <slot />
 
     <script>
+        const langToggle = document.getElementById("lang-toggle");
+
+        const applyLang = (lang: "pt" | "en") => {
+            document.documentElement.dataset.lang = lang;
+            document.documentElement.lang = lang === "en" ? "en" : "pt-BR";
+
+            document.querySelectorAll<HTMLElement>("[data-alt-pt]").forEach((el) => {
+                const alt = lang === "en" ? el.dataset.altEn : el.dataset.altPt;
+                if (alt) el.setAttribute("alt", alt);
+            });
+
+            if (langToggle) {
+                langToggle.textContent = lang === "en" ? "PT" : "EN";
+                langToggle.setAttribute(
+                    "aria-label",
+                    lang === "en" ? "Mudar para português" : "Switch to English"
+                );
+            }
+
+            localStorage.setItem("lang", lang);
+        };
+
+        applyLang(document.documentElement.dataset.lang === "en" ? "en" : "pt");
+
+        langToggle?.addEventListener("click", () => {
+            applyLang(document.documentElement.dataset.lang === "en" ? "pt" : "en");
+        });
+
         const navLinks = document.querySelectorAll<HTMLAnchorElement>(".navbar a");
         const sections = Array.from(navLinks)
             .map((link) => document.querySelector(link.getAttribute("href") ?? ""))
@@ -182,6 +222,36 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
     .navbar a:hover,
     .navbar a.active {
         color: var(--accent-cyan);
+    }
+
+    .lang-en {
+        display: none;
+    }
+
+    html[data-lang="en"] .lang-pt {
+        display: none;
+    }
+
+    html[data-lang="en"] .lang-en {
+        display: revert;
+    }
+
+    .lang-toggle {
+        margin-left: 1rem;
+        padding: 0.3rem 0.7rem;
+        background: transparent;
+        color: var(--text-color);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+        font-family: 'Fira Code', monospace;
+        font-size: 0.85rem;
+        cursor: pointer;
+        transition: border-color 0.3s ease, color 0.3s ease;
+    }
+
+    .lang-toggle:hover {
+        color: var(--accent-cyan);
+        border-color: var(--accent-cyan);
     }
 
     section {

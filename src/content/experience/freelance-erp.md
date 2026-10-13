@@ -11,4 +11,16 @@ highlights:
   - "<strong>Mentoria e Liderança Técnica:</strong> Orientação e capacitação técnica de estagiários, auxiliando na adoção de boas práticas de código, fluxos de versionamento e arquitetura de software, acelerando a curva de aprendizado da equipe."
   - "<strong>Desenvolvimento de ponta a ponta</strong> do aplicativo ProComanda para bares e restaurantes. Construído com .NET MAUI e estruturado em arquitetura de camadas, com o desenvolvimento guiado por testes (TDD) para garantir alta estabilidade e confiabilidade na integração em tempo real com o ERP principal."
   - "<strong>Refatoração profunda e evolução</strong> do aplicativo mobile ProCollector (Flutter). A transição para uma Clean Architecture dividida por features e o uso do padrão BLoC para gerenciamento de estado permitiram a criação de um código altamente escalável e modular. Além da melhoria na UX, a reestruturação incluiu a adoção de injeção de dependências (<code>get_it</code>) e uma integração sólida com APIs em ASP.NET Core 8."
+en:
+  role: "Systems Integration and Freelance Development"
+  period: "Jan 2026 - Present"
+  company: "Development of ERP solutions, e-commerce integrations, and mobile development."
+  highlights:
+    - "Maintenance and evolution of commercial ecosystems, working directly on ERP modules and servers."
+    - "Development of automation routines, data-manipulation scripts, and complex business rules."
+    - "Responsible for the secure integration of data between internal systems and external platforms via APIs, ensuring integrity and synchronization of the flow."
+    - "<strong>Code infrastructure modernization:</strong> Implemented version control using Git and GitHub, establishing a workflow that previously didn't exist in the ERP, ensuring traceability and safety for development."
+    - "<strong>Mentorship and Technical Leadership:</strong> Guided and trained interns, helping them adopt good coding practices, versioning workflows, and software architecture, accelerating the team's learning curve."
+    - "<strong>End-to-end development</strong> of the ProComanda app for bars and restaurants. Built with .NET MAUI and structured in a layered architecture, developed test-first (TDD) to ensure high stability and reliability in real-time integration with the core ERP."
+    - "<strong>Deep refactoring and evolution</strong> of the ProCollector mobile app (Flutter). The move to a Clean Architecture split by features and the use of the BLoC pattern for state management enabled a highly scalable and modular codebase. Besides improving UX, the restructuring included adopting dependency injection (<code>get_it</code>) and a solid integration with APIs on ASP.NET Core 8."
 ---

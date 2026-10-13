@@ -10,6 +10,11 @@ const projectsCollection = defineCollection({
     tags: z.array(z.string()),
     repoUrl: z.url().optional(),
     order: z.number(),
+    en: z
+      .object({
+        description: z.string(),
+      })
+      .optional(),
   }),
 });
 
@@ -21,6 +26,14 @@ const experienceCollection = defineCollection({
     period: z.string(),
     order: z.number(),
     highlights: z.array(z.string()),
+    en: z
+      .object({
+        role: z.string(),
+        company: z.string(),
+        period: z.string(),
+        highlights: z.array(z.string()),
+      })
+      .optional(),
   }),
 });
 
@@ -35,6 +48,14 @@ const publicationsCollection = defineCollection({
     abstract: z.string(),
     doi: z.string(),
     order: z.number(),
+    en: z
+      .object({
+        date: z.string(),
+        type: z.string(),
+        paperTitle: z.string(),
+        abstract: z.string(),
+      })
+      .optional(),
   }),
 });
 
@@ -44,6 +65,11 @@ const stackCollection = defineCollection({
     category: z.string(),
     order: z.number(),
     items: z.array(z.string()),
+    en: z
+      .object({
+        category: z.string(),
+      })
+      .optional(),
   }),
 });
 

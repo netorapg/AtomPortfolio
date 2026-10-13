@@ -7,4 +7,6 @@ items:
   - ".NET MAUI"
   - "BLoC"
   - "Clean Architecture"
+en:
+  category: "Mobile & Architecture"
 ---

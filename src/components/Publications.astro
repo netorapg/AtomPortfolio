@@ -7,7 +7,11 @@ const allPublications = (await getCollection("publications")).sort(
 ---
 
 <section id="publicacoes">
-	<h2><span class="cyan">#</span> Publicações</h2>
+	<h2>
+		<span class="cyan">#</span>
+		<span class="lang-pt">Publicações</span>
+		<span class="lang-en">Publications</span>
+	</h2>
 
 	<div class="publications-grid">
 		{
@@ -15,10 +19,16 @@ const allPublications = (await getCollection("publications")).sort(
 				<div class="card">
 					<div class="card-header">
 						<h3>{pub.data.venue}</h3>
-						<span class="date">{pub.data.date}</span>
+						<span class="date">
+							<span class="lang-pt">{pub.data.date}</span>
+							<span class="lang-en">{pub.data.en?.date ?? pub.data.date}</span>
+						</span>
 					</div>
-					<h4 class="company">{pub.data.type}</h4>
-					<ul>
+					<h4 class="company">
+						<span class="lang-pt">{pub.data.type}</span>
+						<span class="lang-en">{pub.data.en?.type ?? pub.data.type}</span>
+					</h4>
+					<ul class="lang-pt">
 						<li>
 							<strong>Título:</strong> <em>{pub.data.paperTitle}</em>
 						</li>
@@ -27,6 +37,28 @@ const allPublications = (await getCollection("publications")).sort(
 						</li>
 						<li>
 							<strong>Resumo:</strong> {pub.data.abstract}
+						</li>
+						<li>
+							<strong>DOI:</strong>{" "}
+							<a
+								href={`https://doi.org/${pub.data.doi}`}
+								target="_blank"
+								rel="noopener noreferrer"
+								class="repo-link"
+							>
+								{pub.data.doi} ↗
+							</a>
+						</li>
+					</ul>
+					<ul class="lang-en">
+						<li>
+							<strong>Title:</strong> <em>{pub.data.en?.paperTitle ?? pub.data.paperTitle}</em>
+						</li>
+						<li>
+							<strong>Authors:</strong> {pub.data.authors}
+						</li>
+						<li>
+							<strong>Abstract:</strong> {pub.data.en?.abstract ?? pub.data.abstract}
 						</li>
 						<li>
 							<strong>DOI:</strong>{" "}
