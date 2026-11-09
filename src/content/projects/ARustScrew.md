@@ -1,9 +1,9 @@
 ---
 title: "A Rusty Screw"
-description: "Este é um jogo de plataforma 2D desenvolvido em C++ com o auxílio da biblioteca SDL2. O jogador controla um personagem que pode pular, atacar e interagir com o ambiente para progredir através dos níveis."
-tags: ["C++", "SDL"]
+description: "Metroidvania 2D escrito do zero em C++ e SDL2, sem engine: física, colisão, animação, câmera, entrada e carregamento de fases (Tiled) feitos à mão, em cerca de 7.500 linhas e 260+ commits. É o estudo de caso do meu artigo publicado no Latin.Science 2025."
+tags: ["C++", "SDL2", "Game Dev"]
 repoUrl: "https://github.com/netorapg/A-Rusty-Screw"
-order: 4
+order: 3
 en:
-  description: "This is a 2D platformer built in C++ with the help of the SDL2 library. The player controls a character who can jump, attack, and interact with the environment to progress through the levels."
+  description: "A 2D Metroidvania written from scratch in C++ and SDL2, with no engine: physics, collision, animation, camera, input and level loading (Tiled) implemented by hand, in about 7,500 lines and 260+ commits. It is the case study of my paper published at Latin.Science 2025."
 ---

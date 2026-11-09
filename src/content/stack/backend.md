@@ -7,6 +7,7 @@ items:
   - "SQL Server"
   - "SQLite"
   - "PostgreSQL"
+  - "Python (Django)"
   - "TDD"
 en:
   category: "Back-end & Databases"

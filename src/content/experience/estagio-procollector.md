@@ -1,18 +1,18 @@
 ---
 role: "Estagiário em Desenvolvimento de Software"
 period: "Mar 2025 - Dez 2025"
-company: "Desenvolvimento do App ProCollector e manutenção e evolução do ERP ProComércio"
+company: "ProComércio (Paranavaí, PR)"
 order: 2
 highlights:
-  - "<strong>Desenvolvimento Mobile:</strong> Criação e evolução do aplicativo mobile ProCollector, focado em resolver gargalos de coleta e gestão de estoque de lojas."
-  - "<strong>Integração de Sistemas:</strong> Implementação de integrações seguras entre plataformas utilizando APIs, garantindo a sincronização e comunicação fluida entre o app e o backend."
-  - "<strong>Evolução de Backend em C#:</strong> Responsável pela manutenção do código-fonte e pelo desenvolvimento de novas rotinas de negócio e automações utilizando a linguagem C#."
+  - "<strong>ProCollector:</strong> criei do zero a primeira versão do app mobile em Flutter para coleta de dados e conferência de estoque em lojas físicas, hoje em produção integrado ao ERP."
+  - "<strong>Backend em C#:</strong> manutenção e evolução do ERP, com novas rotinas de negócio, consultas SQL otimizadas e Web APIs para a sincronização entre o app e o servidor."
+  - "<strong>Containers:</strong> apoio na containerização de serviços e bancos de dados com Docker, Podman e Portainer em servidores Linux."
 en:
   role: "Software Development Intern"
   period: "Mar 2025 - Dec 2025"
-  company: "Development of the ProCollector app and maintenance/evolution of the ProComércio ERP"
+  company: "ProComércio (Paranavaí, Brazil)"
   highlights:
-    - "<strong>Mobile Development:</strong> Built and evolved the ProCollector mobile app, focused on solving bottlenecks in store inventory collection and management."
-    - "<strong>Systems Integration:</strong> Implemented secure integrations between platforms using APIs, ensuring smooth synchronization and communication between the app and the backend."
-    - "<strong>C# Backend Evolution:</strong> Responsible for maintaining the source code and developing new business routines and automations using C#."
+    - "<strong>ProCollector:</strong> built the first version of the Flutter mobile app from scratch for inventory data collection in retail stores, now in production and integrated with the ERP."
+    - "<strong>C# backend:</strong> maintained and evolved the ERP, adding business routines, optimized SQL queries and Web APIs for app-to-server synchronization."
+    - "<strong>Containers:</strong> helped containerize services and databases with Docker, Podman and Portainer on Linux servers."
 ---

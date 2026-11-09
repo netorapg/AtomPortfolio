@@ -1,9 +1,9 @@
 ---
-title: "LibreFichario"
-description: "Leitor de PDF mobile para estudos e anotações, desenvolvido em Flutter com BLoC. Seu destaque é o sistema de notas flutuantes: o usuário cria notas e as posiciona livremente sobre o documento, e cada uma fica vinculada à sua página."
-tags: ["Flutter", "BLoC", "Mobile"]
+title: "LibreFichário"
+description: "Leitor de PDF para estudos (Android e iOS): cada matéria tem seu PDF, e as notas ficam flutuando onde você as arrasta, salvas por página. Migrado em fases para Clean Architecture por features, com BLoC, get_it e SQLite."
+tags: ["Flutter", "BLoC", "Clean Architecture", "SQLite"]
 repoUrl: "https://github.com/netorapg/LibreFichario"
-order: 2
+order: 4
 en:
-  description: "A mobile PDF reader for studying and note-taking, built in Flutter with BLoC. Its standout feature is the floating notes system: the user creates notes and positions them freely over the document, each one linked to its page."
+  description: "A PDF reader for studying (Android and iOS): each subject has its own PDF, and notes float wherever you drag them, saved per page. Migrated in phases to a feature-based Clean Architecture with BLoC, get_it and SQLite."
 ---
